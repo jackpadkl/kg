@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d0c">
+  <title>ПОКЕР НОВОГО УРОВНЯ</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080d0c;
+      --panel: #101816;
+      --ivory: #f4f0e7;
+      --muted: #b9c0b8;
+      --emerald: #174b3b;
+      --emerald-light: #2a7058;
+      --line: rgba(224, 231, 220, .13);
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 78% 18%, rgba(35, 93, 69, .30), transparent 42%),
+        radial-gradient(ellipse at 14% 85%, rgba(25, 64, 52, .22), transparent 40%),
+        linear-gradient(135deg, #080d0c 0%, #101916 52%, #080d0c 100%);
+      color: var(--ivory);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 18px;
+      overflow-x: hidden;
+    }
+    .page {
+      width: min(100%, 1080px);
+      min-height: min(760px, calc(100vh - 56px));
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(17, 27, 23, .92), rgba(7, 12, 11, .82));
+      box-shadow: 0 32px 100px rgba(0,0,0,.42);
+      position: relative;
+      isolation: isolate;
+    }
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(225, 230, 220, .055);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .copy {
+      padding: clamp(34px, 6vw, 76px);
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      margin: 0;
+      max-width: 620px;
+      font-size: clamp(42px, 6.5vw, 76px);
+      line-height: .98;
+      letter-spacing: -.065em;
+      font-weight: 800;
+      text-wrap: balance;
+    }
+    .subtitle {
+      margin: 24px 0 38px;
+      color: #d2d8d0;
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.4;
+      letter-spacing: -.02em;
+    }
+    .benefits {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 42px;
+      display: grid;
+      gap: 18px;
+      color: var(--muted);
+      font-size: clamp(15px, 1.5vw, 17px);
+      line-height: 1.35;
+    }
+    .benefits li {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+    .benefits li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      flex: 0 0 7px;
+      border-radius: 50%;
+      background: #91b49b;
+      box-shadow: 0 0 14px rgba(145,180,155,.35);
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 0 30px;
+      background: linear-gradient(135deg, #245e48, #174632);
+      border: 1px solid rgba(204, 226, 207, .25);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 750;
+      letter-spacing: .075em;
+      box-shadow: 0 12px 32px rgba(14, 69, 48, .28);
+      transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+      box-shadow: 0 16px 38px rgba(14, 69, 48, .38);
+    }
+    .visual {
+      min-height: 620px;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 52% 45%, rgba(38, 105, 75, .27), transparent 44%),
+        linear-gradient(145deg, rgba(20, 44, 34, .35), rgba(4, 8, 7, .2));
+    }
+    .visual::before, .visual::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(190, 211, 192, .12);
+      transform: rotate(-31deg);
+    }
+    .visual::before { width: 390px; height: 590px; }
+    .visual::after { width: 300px; height: 500px; }
+    .monolith {
+      width: min(66%, 330px);
+      aspect-ratio: .64;
+      position: relative;
+      transform: perspective(900px) rotateY(-12deg) rotateZ(5deg);
+      background:
+        linear-gradient(112deg, rgba(255,255,255,.12), transparent 17%, transparent 77%, rgba(255,255,255,.08)),
+        linear-gradient(145deg, #24362e, #0a100e 58%, #17251e);
+      border: 1px solid rgba(214, 227, 211, .28);
+      box-shadow: 28px 34px 70px rgba(0,0,0,.55), inset 0 0 35px rgba(117,155,124,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .monolith::before {
+      content: "";
+      position: absolute;
+      inset: 13px;
+      border: 1px solid rgba(224, 232, 218, .18);
+    }
+    .mark {
+      font-family: Georgia, "Times New Roman", serif;
+      color: rgba(239, 235, 220, .92);
+      font-size: clamp(100px, 18vw, 190px);
+      line-height: 1;
+      text-shadow: 0 8px 25px rgba(0,0,0,.4);
+      transform: translateY(-4px);
+    }
+    .chip {
+      position: absolute;
+      width: 104px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      right: 13%;
+      bottom: 17%;
+      background:
+        repeating-conic-gradient(from 4deg, #b7bcb1 0deg 7deg, #454d47 7deg 13deg),
+        #222a25;
+      border: 5px solid #343d36;
+      box-shadow: 0 18px 28px rgba(0,0,0,.5), inset 0 0 0 5px #101713, inset 0 0 0 7px #aab2a6;
+    }
+    .chip::after {
+      content: "";
+      position: absolute;
+      inset: 25px;
+      border-radius: 50%;
+      border: 1px solid rgba(225,231,219,.55);
+      background: #1b2921;
+    }
+    @media (max-width: 760px) {
+      body { padding: 12px; align-items: stretch; }
+      .page {
+        min-height: calc(100vh - 24px);
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 250px;
+      }
+      .copy { padding: 38px 28px 24px; }
+      h1 { font-size: clamp(40px, 11vw, 60px); }
+      .subtitle { margin: 18px 0 28px; }
+      .benefits { gap: 14px; margin-bottom: 30px; }
+      .cta { width: 100%; }
+      .visual { min-height: 250px; }
+      .monolith { width: 150px; }
+      .mark { font-size: 100px; }
+      .chip { width: 70px; right: 17%; bottom: 16%; }
+      .chip::after { inset: 17px; }
+      .visual::before { width: 230px; height: 330px; }
+      .visual::after { width: 180px; height: 280px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1399310622039113');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1399310622039113&ev=PageView&noscript=1"
+    alt=""></noscript>
+</head>
+<body>
+  <main class="page">
+    <section class="copy">
+      <h1>ПОКЕР НОВОГО УРОВНЯ</h1>
+      <p class="subtitle">Твой покер. Твои правила.</p>
+      <ul class="benefits">
+        <li>Современная игровая платформа</li>
+        <li>Разнообразие покерных форматов</li>
+        <li>Удобная игра на смартфоне</li>
+      </ul>
+      <a class="cta" href="https://t.me/+dm8CamG_BfljODEy" target="_blank" rel="noopener noreferrer">НАЧАТЬ ИГРАТЬ</a>
+    </section>
+    <section class="visual" aria-hidden="true">
+      <div class="monolith"><span class="mark">♠</span></div>
+      <div class="chip"></div>
+    </section>
+  </main>
+</body>
+</html>
